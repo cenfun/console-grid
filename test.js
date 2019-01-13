@@ -1,15 +1,4 @@
-# console-grid
-console log a grid
-
-# Install
-```
-npm install console-grid
-```
-
-
-# Usage
-```js
-var Grid = require("console-grid");
+var Grid = require("./console-grid.js");
 
 var option = {
     columnBorder: " | ",
@@ -72,18 +61,3 @@ var data = {
     }]
 };
 grid.render(data);
-```
-# Preview
-```
--------------------- | ----- | ---- | -------------
-Name                 | Value | Null | Number Format
--------------------- | ----- | ---- | -------------
-Row 1                | 1     | -    | 1.00
-Row 2                | 2     | -    | 2.00
-Row Name             | 3     | -    | 3.00
-Row Long Name Lon... | 4     | -    | 4.00
-Row 5                | 5     | -    | 5.00
-Row 6                | 6     | -    | 6.00
-Row 7                | 7     | -    | 7.00
--------------------- | ----- | ---- | -------------
-```

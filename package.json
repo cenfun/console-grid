@@ -1,0 +1,20 @@
+{
+  "name": "console-grid",
+  "version": "1.0.0",
+  "description": "console log a grid",
+  "main": "console-grid.js",
+  "scripts": {
+    "test": "node test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cenfun/console-grid.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/cenfun/console-grid/issues"
+  },
+  "homepage": "https://github.com/cenfun/console-grid#readme"
+}

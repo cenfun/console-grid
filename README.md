@@ -1,6 +1,10 @@
 # console-grid
 console log a grid
 
+![npm](https://img.shields.io/npm/v/console-grid.svg)
+![npm](https://img.shields.io/npm/dt/console-grid.svg)
+![David](https://img.shields.io/david/cenfun/console-grid.svg)
+
 # Install
 ```
 npm install console-grid

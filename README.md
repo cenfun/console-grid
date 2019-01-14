@@ -62,11 +62,11 @@ var data = {
         value: "4",
         number: 4
     }, {
-        name: "Row 5",
+        name: "Row 5 \x1b[32mColor\x1b[0m",
         value: "5",
         number: 5
     }, {
-        name: "Row 6",
+        name: "Row 6 \x1b[31mColor\x1b[0m",
         value: "6",
         number: 6
     }, {

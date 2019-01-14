@@ -1,6 +1,6 @@
 {
   "name": "console-grid",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "console log a grid",
   "main": "console-grid.js",
   "scripts": {

@@ -55,6 +55,9 @@ class ConsoleGrid {
             if (typeof (column.formatter) !== "function") {
                 column.formatter = this.option.defaultFormatter;
             }
+            if (typeof (column.maxWidth) !== "number") {
+                column.maxWidth = this.option.defaultMaxWidth;
+            }
             column.name = column.name + "";
         });
     }
@@ -73,7 +76,17 @@ class ConsoleGrid {
                 } else {
                     str = str + "";
                 }
-                item[id] = this.getCharByMaxWidth(str, column.maxWidth);
+                var maxWidth = column.maxWidth;
+                var lenWithColor = str.length;
+                var lenWithoutColor = this.getCharLength(str);
+                if (lenWithoutColor <= maxWidth) {
+                    item["width_" + id] = lenWithoutColor;
+                    item[id] = str;
+                } else {
+                    item["width_" + id] = maxWidth;
+                    var resetColor = lenWithoutColor < lenWithColor ? true : false;
+                    item[id] = this.getCharByMaxWidth(str, maxWidth, resetColor);
+                }
             });
             this.gridRows.push(item);
         });
@@ -99,29 +112,28 @@ class ConsoleGrid {
         var w = column.name.length;
         var id = column.id;
         this.gridRows.forEach(row => {
-            var str = row[id];
-            w = Math.max(w, this.getCharLength(str));
+            w = Math.max(w, row["width_" + id]);
         });
         return w;
     }
 
-    getCharByMaxWidth(str, maxWidth) {
-        if (typeof (maxWidth) !== "number") {
-            maxWidth = this.option.defaultMaxWidth;
-        }
-        var len = this.getCharLength(str);
-        if (len <= maxWidth) {
-            return str;
-        }
-
+    getCharByMaxWidth(str, maxWidth, resetColor) {
+        str = this.getCharWithoutColor(str);
         str = str.substr(0, maxWidth - 3) + "...";
-
+        if (resetColor) {
+            str += "\x1b[0m";
+        }
         return str;
     }
 
+    getCharWithoutColor(char) {
+        return char.replace(/\033\[(\d+)m/g, '');
+    }
+
     getCharLength(char) {
-        char = char.replace(/\033\[39m/g, '');
-        char = char.replace(/\033\[(3[0-7])m/g, '');
+        //console.log(char, char.length);
+        char = this.getCharWithoutColor(char);
+        //console.log(char, char.length);
         return char.length;
     }
 
@@ -171,8 +183,9 @@ class ConsoleGrid {
     renderRow(row) {
         var list = [];
         this.columns.forEach(column => {
-            var str = row[column.id];
-            var spaceLen = column.width - str.length;
+            var id = column.id;
+            var str = row[id];
+            var spaceLen = column.width - row["width_" + id];
             list.push(str + this.getChar(spaceLen));
         });
         var line = list.join(this.option.columnBorder);

@@ -1,4 +1,5 @@
 const style = require("./style.js");
+const comparers = require("./comparers.js");
 class ConsoleGrid {
     constructor(option) {
         this.style = style;
@@ -115,6 +116,9 @@ class ConsoleGrid {
     }
 
     initGridRows() {
+
+        this.sortRows();
+
         this.gridRows = [];
         let index = 0;
         this.forEachTree(this.rows, (row, i, parent) => {
@@ -131,6 +135,69 @@ class ConsoleGrid {
         //console.log(this.gridRows);
     }
 
+    getSortColumn() {
+        var sortField = this.option.sortField;
+        if (!sortField) {
+            return null;
+        }
+        for (var i = 0, l = this.columns.length; i < l; i++) {
+            var column = this.columns[i];
+            if (column.id === sortField) {
+                return column;
+            }
+        }
+        return null;
+    }
+
+    getSortComparer() {
+        var type = this.sortColumn.type;
+        var comparer = comparers[type] || comparers.string;
+        return comparer;
+    }
+
+    sortRows() {
+        this.sortColumn = this.getSortColumn();
+        if (!this.sortColumn) {
+            return;
+        }
+
+        var sortAll = (list) => {
+            if (!Array.isArray(list)) {
+                return;
+            }
+            if (list.length > 1) {
+                this.sortList(list);
+            }
+            list.forEach((item) => {
+                if (item && item.subs) {
+                    sortAll(item.subs);
+                }
+            });
+        };
+
+        sortAll(this.rows);
+
+    }
+
+    sortList(list) {
+
+        var sortField = this.sortColumn.id;
+        var sortAsc = this.option.sortAsc;
+        var sortFactor = sortAsc ? -1 : 1;
+        var sortBlankFactor = 1;
+        var comparer = this.getSortComparer();
+
+        list.sort((a, b) => {
+            var option = {
+                sortField: sortField,
+                sortFactor: sortFactor,
+                sortBlankFactor: sortBlankFactor
+            };
+            return comparer.call(this, a, b, option);
+        });
+
+    }
+
     initRowProperties(row) {
         this.columns.forEach(column => {
             let id = column.id;
@@ -141,15 +208,14 @@ class ConsoleGrid {
                 str = str + "";
             }
             let maxWidth = column.maxWidth;
-            let lenWithColor = str.length;
+            //let lenWithColor = str.length;
             let lenWithoutColor = this.getCharLength(str);
             if (lenWithoutColor <= maxWidth) {
                 row["cg_width_" + id] = lenWithoutColor;
                 row["cg_" + id] = str;
             } else {
                 row["cg_width_" + id] = maxWidth;
-                let resetColor = lenWithoutColor < lenWithColor ? true : false;
-                row["cg_" + id] = this.getCharByMaxWidth(str, maxWidth, resetColor);
+                row["cg_" + id] = this.getCharByMaxWidth(str, maxWidth);
             }
         });
     }
@@ -179,12 +245,9 @@ class ConsoleGrid {
         return w;
     }
 
-    getCharByMaxWidth(str, maxWidth, resetColor) {
+    getCharByMaxWidth(str, maxWidth) {
         str = this.getCharWithoutColor(str);
         str = str.substr(0, maxWidth - 3) + "...";
-        if (resetColor) {
-            str += "\x1b[0m";
-        }
         return str;
     }
 

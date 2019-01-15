@@ -5,9 +5,14 @@ var option = {
     rowBorder: "-",
     hideHeaders: false,
     nullPlaceholder: "-",
-    defaultFormatter: (v, row, column) => {
-        return v;
-    }
+    defaultMaxWidth: 30,
+
+    sortField: "",
+    sortAsc: false,
+
+    treeId: "name",
+    treeIcon: "|- ",
+    treeIndent: "   "
 };
 var grid = new Grid(option);
 
@@ -15,16 +20,18 @@ var data = {
     columns: [{
         id: "name",
         name: "Name",
+        type: "string",
         maxWidth: 30
     }, {
         id: "value",
         name: "Value",
-        color: "green"
+        type: "string"
     }, {
         id: "null",
         name: "Null"
     }, {
         id: "number",
+        type: "number",
         name: "Number Format",
         formatter: (v, row, column) => {
             return Number(v).toFixed(2);
@@ -43,7 +50,7 @@ var data = {
         value: "3",
         number: 3
     }, {
-        name: "Row Long Name Long Name Long Name Long Name",
+        name: "Row Long Name Long Name Long Name Long Name" + Grid.style.red("red"),
         value: "4",
         number: 4
     }, {

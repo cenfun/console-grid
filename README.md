@@ -9,7 +9,24 @@ console log a grid
 ```
 npm install console-grid
 ```
-
+# Preview
+```
+------------------------------ | ----- | ---- | -------------
+Name                           | Value | Null | Number Format
+------------------------------ | ----- | ---- | -------------
+|- Row 1                       | 1     | -    | 1.00
+|- Row 2                       | 2     | -    | 2.00
+|- Row Name                    | 3     | -    | 3.00
+|- Row Long Name Long Name ... | 4     | -    | 4.00
+|- Row 5 red                   | 5     | -    | 5.00
+|- Row 6 bg green              | 6     | -    | 6.00
+|- Row 7 bright blue           | 7     | -    | 7.00
+|- Row 8 bright bg blue        | 8     | -    | 8.00
+   |- Sub Row 1                | s1    | -    | 11.00
+   |- Sub Row 2                | s2    | -    | 12.00
+   |- Sub Row 3                | s3    | -    | 13.00
+------------------------------ | ----- | ---- | -------------
+```
 
 # Usage
 ```js
@@ -102,24 +119,6 @@ var data = {
     }]
 };
 grid.render(data);
-```
-# Preview
-```
------------------------------- | ----- | ---- | -------------
-Name                           | Value | Null | Number Format
------------------------------- | ----- | ---- | -------------
-|- Row 1                       | 1     | -    | 1.00
-|- Row 2                       | 2     | -    | 2.00
-|- Row Name                    | 3     | -    | 3.00
-|- Row Long Name Long Name ... | 4     | -    | 4.00
-|- Row 5 red                   | 5     | -    | 5.00
-|- Row 6 bg green              | 6     | -    | 6.00
-|- Row 7 bright blue           | 7     | -    | 7.00
-|- Row 8 bright bg blue        | 8     | -    | 8.00
-   |- Sub Row 1                | s1    | -    | 11.00
-   |- Sub Row 2                | s2    | -    | 12.00
-   |- Sub Row 3                | s3    | -    | 13.00
------------------------------- | ----- | ---- | -------------
 ```
 
 # Test Example

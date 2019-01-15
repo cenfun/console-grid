@@ -123,7 +123,7 @@ Name                           | Value | Null | Number Format
 ```
 
 # Test Example
-[test.js](test.js)
+[test.js](test/test.js)
 ```
 node test.js
 ```

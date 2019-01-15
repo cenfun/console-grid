@@ -1,4 +1,4 @@
-var Grid = require("./console-grid.js");
+var Grid = require("../lib/index.js");
 
 var option = {
     columnBorder: " | ",

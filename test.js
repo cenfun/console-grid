@@ -47,17 +47,34 @@ var data = {
         value: "4",
         number: 4
     }, {
-        name: "Row 5 " + grid.color.red("red"),
+        name: "Row 5 " + Grid.style.red("red"),
         value: "5",
         number: 5
     }, {
-        name: "Row 6 " + grid.color.bg.green("bg green"),
+        name: "Row 6 " + Grid.style.bg.green("bg green"),
         value: "6",
         number: 6
     }, {
-        name: "Row 7 " + grid.color.bright.bg.blue("bright bg blue"),
+        name: "Row 7 " + Grid.style.br.blue("bright blue"),
         value: "7",
         number: 7
+    }, {
+        name: "Row 8 " + Grid.style.br.bg.blue("bright bg blue"),
+        value: "8",
+        number: 8,
+        subs: [{
+            name: "Sub Row 1",
+            value: "s1",
+            number: 11,
+        }, {
+            name: "Sub Row 2",
+            value: "s2",
+            number: 12,
+        }, {
+            name: "Sub Row 3",
+            value: "s3",
+            number: 13,
+        }]
     }]
 };
 grid.render(data);

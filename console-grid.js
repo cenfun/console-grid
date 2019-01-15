@@ -1,7 +1,7 @@
-const color = require("./color.js");
+const style = require("./style.js");
 class ConsoleGrid {
     constructor(option) {
-        this.color = color;
+        this.style = style;
         this.columns = [];
         this.rows = [];
 
@@ -26,11 +26,15 @@ class ConsoleGrid {
 
     }
 
-
     defaultTreeFormatter(v, row, column) {
-
-
-
+        let indent = "";
+        let level = row.cg_level;
+        while (level > 0) {
+            indent += this.option.treeIndent;
+            level -= 1;
+        }
+        let str = indent + this.option.treeIcon + v;
+        return str;
     }
 
     defaultFormatter(v, row, column) {
@@ -61,6 +65,30 @@ class ConsoleGrid {
         return this;
     }
 
+    forEachTree(tree, callback) {
+        if (typeof (callback) !== "function") {
+            return this;
+        }
+        var forEachAll = function (tree, parent) {
+            if (!Array.isArray(tree)) {
+                return;
+            }
+            for (var i = 0, l = tree.length; i < l; i++) {
+                var item = tree[i];
+                var result = callback.call(this, item, i, parent);
+                if (result === false) {
+                    return false;
+                }
+                var subResult = forEachAll(item.subs, item);
+                if (subResult === false) {
+                    return false;
+                }
+            }
+        };
+        forEachAll(tree);
+        return this;
+    }
+
     //=====================================================================================================
 
     initData() {
@@ -73,7 +101,11 @@ class ConsoleGrid {
     initGridColumns() {
         this.columns.forEach(column => {
             if (typeof (column.formatter) !== "function") {
-                column.formatter = this.option.defaultFormatter;
+                if (column.id === this.option.treeId) {
+                    column.formatter = this.option.defaultTreeFormatter;
+                } else {
+                    column.formatter = this.option.defaultFormatter;
+                }
             }
             if (typeof (column.maxWidth) !== "number") {
                 column.maxWidth = this.option.defaultMaxWidth;
@@ -84,31 +116,41 @@ class ConsoleGrid {
 
     initGridRows() {
         this.gridRows = [];
-        this.rows.forEach((row, rowIndex) => {
-            var item = {
-                index: rowIndex
-            };
-            this.columns.forEach(column => {
-                var id = column.id;
-                var str = column.formatter.call(this, row[id], row, column);
-                if (typeof (str) === "undefined" || str === null) {
-                    str = this.option.nullPlaceholder;
-                } else {
-                    str = str + "";
-                }
-                var maxWidth = column.maxWidth;
-                var lenWithColor = str.length;
-                var lenWithoutColor = this.getCharLength(str);
-                if (lenWithoutColor <= maxWidth) {
-                    item["width_" + id] = lenWithoutColor;
-                    item[id] = str;
-                } else {
-                    item["width_" + id] = maxWidth;
-                    var resetColor = lenWithoutColor < lenWithColor ? true : false;
-                    item[id] = this.getCharByMaxWidth(str, maxWidth, resetColor);
-                }
-            });
-            this.gridRows.push(item);
+        let index = 0;
+        this.forEachTree(this.rows, (row, i, parent) => {
+            let level = 0;
+            if (parent) {
+                level = parent.cg_level + 1;
+            }
+            row.cg_level = level;
+            row.cg_index = index++;
+            this.initRowProperties(row);
+            this.gridRows.push(row);
+        });
+
+        //console.log(this.gridRows);
+    }
+
+    initRowProperties(row) {
+        this.columns.forEach(column => {
+            let id = column.id;
+            let str = column.formatter.call(this, row[id], row, column);
+            if (typeof (str) === "undefined" || str === null) {
+                str = this.option.nullPlaceholder;
+            } else {
+                str = str + "";
+            }
+            let maxWidth = column.maxWidth;
+            let lenWithColor = str.length;
+            let lenWithoutColor = this.getCharLength(str);
+            if (lenWithoutColor <= maxWidth) {
+                row["cg_width_" + id] = lenWithoutColor;
+                row["cg_" + id] = str;
+            } else {
+                row["cg_width_" + id] = maxWidth;
+                let resetColor = lenWithoutColor < lenWithColor ? true : false;
+                row["cg_" + id] = this.getCharByMaxWidth(str, maxWidth, resetColor);
+            }
         });
     }
 
@@ -132,7 +174,7 @@ class ConsoleGrid {
         var w = column.name.length;
         var id = column.id;
         this.gridRows.forEach(row => {
-            w = Math.max(w, row["width_" + id]);
+            w = Math.max(w, row["cg_width_" + id]);
         });
         return w;
     }
@@ -204,8 +246,8 @@ class ConsoleGrid {
         var list = [];
         this.columns.forEach(column => {
             var id = column.id;
-            var str = row[id];
-            var spaceLen = column.width - row["width_" + id];
+            var str = row["cg_" + id];
+            var spaceLen = column.width - row["cg_width_" + id];
             list.push(str + this.getChar(spaceLen));
         });
         var line = list.join(this.option.columnBorder);
@@ -223,5 +265,7 @@ class ConsoleGrid {
     }
 
 }
+
+ConsoleGrid.style = style;
 
 module.exports = ConsoleGrid;

@@ -15,7 +15,7 @@ var data = {
     columns: [{
         id: "name",
         name: "Name",
-        maxWidth: 20
+        maxWidth: 30
     }, {
         id: "value",
         name: "Value",
@@ -47,15 +47,15 @@ var data = {
         value: "4",
         number: 4
     }, {
-        name: "Row 5 \x1b[32mColor\x1b[0m",
+        name: "Row 5 " + grid.color.red("red"),
         value: "5",
         number: 5
     }, {
-        name: "Row 6 \x1b[31mColor\x1b[0m",
+        name: "Row 6 " + grid.color.bg.green("bg green"),
         value: "6",
         number: 6
     }, {
-        name: "Row 7",
+        name: "Row 7 " + grid.color.bright.bg.blue("bright bg blue"),
         value: "7",
         number: 7
     }]

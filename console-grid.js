@@ -1,6 +1,7 @@
+const color = require("./color.js");
 class ConsoleGrid {
-
     constructor(option) {
+        this.color = color;
         this.columns = [];
         this.rows = [];
 
@@ -10,14 +11,33 @@ class ConsoleGrid {
             hideHeaders: false,
             nullPlaceholder: "-",
             defaultMaxWidth: 30,
-            defaultFormatter: (v, row, column) => {
-                return v;
-            }
+
+            sortField: "",
+            sortAsc: false,
+
+            treeId: "name",
+            treeIcon: "|- ",
+            treeIndent: "   ",
+            defaultTreeFormatter: this.defaultTreeFormatter,
+            defaultFormatter: this.defaultFormatter
         };
 
         this.option = Object.assign(defaultOption, option);
 
     }
+
+
+    defaultTreeFormatter(v, row, column) {
+
+
+
+    }
+
+    defaultFormatter(v, row, column) {
+        return v;
+    }
+
+    //=====================================================================================================
 
     setData(data) {
         this.data = data || {};

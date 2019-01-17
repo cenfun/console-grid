@@ -36,6 +36,11 @@ var data = {
         formatter: (v, row, column) => {
             return Number(v).toFixed(2);
         }
+    }, {
+        id: "value",
+        name: "Multiple Line Header Name",
+        width: 10,
+        maxWidth: 10
     }],
     rows: [{
         name: "Row 1",

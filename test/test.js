@@ -39,7 +39,6 @@ var data = {
     }, {
         id: "value",
         name: "Multiple Line Header Name",
-        width: 10,
         maxWidth: 10
     }],
     rows: [{
@@ -84,7 +83,7 @@ var data = {
             number: 12,
         }, {
             name: "Sub Row 3",
-            value: "s3",
+            value: "s3 s3 s3",
             number: 13,
         }]
     }]

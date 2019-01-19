@@ -1,45 +1,35 @@
 var Grid = require("../lib/index.js");
-
-var option = {
-    columnBorder: " | ",
-    rowBorder: "-",
-    hideHeaders: false,
-    nullPlaceholder: "-",
-    defaultMaxWidth: 30,
-
-    sortField: "",
-    sortAsc: false,
-
-    treeId: "name",
-    treeIcon: "|- ",
-    treeIndent: "   "
-};
-var grid = new Grid(option);
+var grid = new Grid();
 
 var data = {
+    option: {
+
+    },
     columns: [{
         id: "name",
-        name: "Name",
+        name: "Name " + Grid.style.bg.green("bg green"),
         type: "string",
-        maxWidth: 30
+        maxWidth: 38
     }, {
         id: "value",
         name: "Value",
-        type: "string"
+        type: "string",
+        maxWidth: 7
     }, {
         id: "null",
         name: "Null"
     }, {
         id: "number",
         type: "number",
-        name: "Number Format",
+        name: "Number Format " + Grid.style.red("red") + " LongWordLongWord",
+        maxWidth: 12,
         formatter: (v, row, column) => {
             return Number(v).toFixed(2);
         }
     }, {
         id: "value",
         name: "Multiple Line Header Name",
-        maxWidth: 10
+        maxWidth: 12
     }],
     rows: [{
         name: "Row 1",
@@ -54,7 +44,7 @@ var data = {
         value: "3",
         number: 3
     }, {
-        name: "Row Long Name Long Name Long Name Long Name" + Grid.style.red("red"),
+        name: "Row Long Name " + Grid.style.red("Red") + " Long Name " + Grid.style.red("Long") + " " + Grid.style.green("G") + " Long Name " + Grid.style.red("Red"),
         value: "4",
         number: 4
     }, {
@@ -89,3 +79,10 @@ var data = {
     }]
 };
 grid.render(data);
+
+console.log("\nhide headers and sort by name:");
+data.option.hideHeaders = true;
+data.option.sortField = "name";
+grid.render(data);
+
+//console.log(data);

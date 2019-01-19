@@ -29,6 +29,7 @@ var data = {
     }, {
         id: "value",
         name: "Multiple Line Header Name",
+        align: "right",
         maxWidth: 12
     }],
     rows: [{

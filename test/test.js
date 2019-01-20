@@ -1,5 +1,6 @@
-var Grid = require("../lib/index.js");
-var grid = new Grid();
+var ConsoleGrid = require("../lib/index.js");
+var consoleGrid = new ConsoleGrid();
+var CGS = ConsoleGrid.Style;
 
 var data = {
     option: {
@@ -7,7 +8,7 @@ var data = {
     },
     columns: [{
         id: "name",
-        name: "Name " + Grid.style.bg.green("bg green"),
+        name: "Name " + CGS.bg.green("bg green"),
         type: "string",
         maxWidth: 38
     }, {
@@ -21,7 +22,7 @@ var data = {
     }, {
         id: "number",
         type: "number",
-        name: "Number Format " + Grid.style.red("red") + " LongWordLongWord",
+        name: "Number Format " + CGS.red("red") + " LongWordLongWord",
         maxWidth: 12,
         formatter: (v, row, column) => {
             return Number(v).toFixed(2);
@@ -45,23 +46,23 @@ var data = {
         value: "3",
         number: 3
     }, {
-        name: "Row Long Name " + Grid.style.red("Red") + " Long Name " + Grid.style.red("Long") + " " + Grid.style.green("G") + " Long Name " + Grid.style.red("Red"),
+        name: "Row Long Name " + CGS.red("Red") + " Long Name " + CGS.red("Long") + " " + CGS.green("G") + " Long Name " + CGS.red("Red"),
         value: "4",
         number: 4
     }, {
-        name: "Row 5 " + Grid.style.red("red"),
+        name: "Row 5 " + CGS.red("red"),
         value: "5",
         number: 5
     }, {
-        name: "Row 6 " + Grid.style.bg.green("bg green"),
+        name: "Row 6 " + CGS.bg.green("bg green"),
         value: "6",
         number: 6
     }, {
-        name: "Row 7 " + Grid.style.br.blue("bright blue"),
+        name: "Row 7 " + CGS.br.blue("bright blue"),
         value: "7",
         number: 7
     }, {
-        name: "Row 8 " + Grid.style.br.bg.blue("bright bg blue"),
+        name: "Row 8 " + CGS.br.bg.blue("bright bg blue"),
         value: "8",
         number: 8,
         subs: [{
@@ -79,12 +80,12 @@ var data = {
         }]
     }]
 };
-grid.render(data);
+consoleGrid.render(data);
 
 console.log("\nhide headers, no tree, sort by name:");
 data.option.hideHeaders = true;
 data.option.sortField = "name";
 data.rows[7].subs = null;
-grid.render(data);
+consoleGrid.render(data);
 
 //console.log(data);

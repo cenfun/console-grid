@@ -70,7 +70,7 @@ var data = {
             number: 11,
         }, {
             name: "Sub Row 2",
-            value: "s2",
+            value: "s2s2s2 s",
             number: 12,
         }, {
             name: "Sub Row 3",

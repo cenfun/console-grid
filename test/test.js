@@ -81,9 +81,10 @@ var data = {
 };
 grid.render(data);
 
-console.log("\nhide headers and sort by name:");
+console.log("\nhide headers, no tree, sort by name:");
 data.option.hideHeaders = true;
 data.option.sortField = "name";
+data.rows[7].subs = null;
 grid.render(data);
 
 //console.log(data);

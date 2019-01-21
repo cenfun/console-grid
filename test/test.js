@@ -51,8 +51,7 @@ var data = {
         number: 4
     }, {
         name: "Row 5 " + CGS.red("red"),
-        value: "5",
-        number: 5
+        value: "5"
     }, {
         name: "Row 6 " + CGS.bg.green("bg green"),
         value: "6",
@@ -86,6 +85,11 @@ console.log("\nhide headers, no tree, sort by name:");
 data.option.hideHeaders = true;
 data.option.sortField = "name";
 data.rows[7].subs = null;
+consoleGrid.render(data);
+
+console.log("\nsort by number and asc:");
+data.option.sortField = "number";
+data.option.sortAsc = true;
 consoleGrid.render(data);
 
 //console.log(data);

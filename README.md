@@ -16,17 +16,19 @@ npm install console-grid
 │                                        │         │      │   Format red │  Line Header │
 │ Name bg green                          │ Value   │ Null │ LongWordL... │         Name │
 ├ ────────────────────────────────────── ┼ ─────── ┼ ──── ┼ ──────────── ┼ ──────────── ┤
-│ |- Row 1                               │ 1       │ -    │         1.00 │            1 │
-│ |- Row 2                               │ 2       │ -    │         2.00 │            2 │
-│ |- Row Name                            │ 3       │ -    │         3.00 │            3 │
-│ |- Row Long Name Red Long Name Long... │ 4       │ -    │         4.00 │            4 │
-│ |- Row 5 red                           │ 5       │ -    │         5.00 │            5 │
-│ |- Row 6 bg green                      │ 6       │ -    │         6.00 │            6 │
-│ |- Row 7 bright blue                   │ 7       │ -    │         7.00 │            7 │
-│ |- Row 8 bright bg blue                │ 8       │ -    │         8.00 │            8 │
-│    |- Sub Row 1                        │ s1      │ -    │        11.00 │           s1 │
-│    |- Sub Row 2                        │ s2      │ -    │        12.00 │           s2 │
-│    |- Sub Row 3                        │ s3 s... │ -    │        13.00 │     s3 s3 s3 │
+│ ├ Row Name                             │ 3       │ -    │         3.00 │            3 │
+│ ├ Row Long Name Red Long Name Long ... │ 4       │ -    │         4.00 │            4 │
+│ ├ Row 8 bright bg blue                 │ 8       │ -    │         8.00 │            8 │
+│ │ ├ Sub Row 3                          │ s3 s... │ -    │        13.00 │     s3 s3 s3 │
+│ │ ├ Sub Row 2                          │ s2s2s2  │ -    │        12.00 │     s2s2s2 s │
+│ │ └ Sub Row 1                          │ s1      │ -    │        11.00 │           s1 │
+│ │   ├ Sub Row 22                       │ s22     │ -    │        22.00 │          s22 │
+│ │   └ Sub Row 21                       │ s21     │ -    │        21.00 │          s21 │
+│ ├ Row 7 bright blue                    │ 7       │ -    │         7.00 │            7 │
+│ ├ Row 6 bg green                       │ 6       │ -    │         6.00 │            6 │
+│ ├ Row 5 red                            │ 5       │ -    │            - │            5 │
+│ ├ Row 2                                │ 2       │ -    │         2.00 │            2 │
+│ └ Row 1                                │ 1       │ -    │         1.00 │            1 │
 └ ────────────────────────────────────── ┴ ─────── ┴ ──── ┴ ──────────── ┴ ──────────── ┘
 ```
 
@@ -93,8 +95,10 @@ option = {
     sortAsc: false,
 
     treeId: "name",
-    treeIcon: "|- ",
-    treeIndent: "   ",
+    treeIcon: "├ ",
+    treeLink: "│ ",
+    treeLast: "└ ",
+    treeIndent: "  ",
     defaultTreeFormatter: this.defaultTreeFormatter,
     defaultFormatter: this.defaultFormatter,
     nullPlaceholder: "-"

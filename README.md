@@ -1,5 +1,13 @@
 # console-grid
-console log a grid with tree
+
+* Console log a grid with tree style rows
+* Color cells
+* Customize cell formatter
+* Column sorting
+* Multiple lines header
+* Zero Dependencies and Pure Vanilla Javascript
+* Simple & Easy to use, Extremely Lightweight
+
 
 ![npm](https://img.shields.io/npm/v/console-grid.svg)
 ![npm](https://img.shields.io/npm/dt/console-grid.svg)
@@ -45,8 +53,8 @@ hide headers, no tree, sort by name:
 
 # Usage
 ```js
-var Grid = require("console-grid");
-var grid = new Grid();
+var ConsoleGrid = require("console-grid");
+var grid = new ConsoleGrid();
 var data = {
     option: {
         sortField: "name"
@@ -125,7 +133,7 @@ column = {
     type: String, //string, number
     align : String, //left, right
     maxWidth: Number,
-    formatter: Function
+    formatter: Function //cell formatter
 }
 ```
 
@@ -137,8 +145,18 @@ row = {
 }
 ```
 
+# Color API
+```js
+var ConsoleGrid = require("console-grid");
+var CGS = ConsoleGrid.Style;
+//'black', 'red', 'green', 'yellow', 'blue', 'magenta', 'cyan', 'white'
+console.log(CGS.red("Red"));
+console.log(CGS.bg.green("bg green"));
+```
+
 # Example test
 [test.js](test/test.js)
 ```
 npm run test
 ```
+![screenshot](test/console-grid-screenshot.png)

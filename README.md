@@ -68,7 +68,10 @@ var data = {
         id: "value",
         name: "Value",
         type: "string",
-        maxWidth: 7
+        maxWidth: 7,
+        formatter: (v, row, column) => {
+            return v;
+        }
     }],
     rows: [{
         name: "Row 1",
@@ -85,6 +88,7 @@ var data = {
         }]
     }]
 };
+//returns lines could be saved to log file
 var lines = grid.render(data);
 ```
 
@@ -108,6 +112,7 @@ option = {
     hideHeaders: false,
 
     padding: 1,
+    defaultMinWidth: 1,
     defaultMaxWidth: 30,
 
     sortField: "",
@@ -132,6 +137,7 @@ column = {
     name: String,
     type: String, //string, number
     align : String, //left, right
+    minWidth: Number,
     maxWidth: Number,
     formatter: Function //cell formatter
 }

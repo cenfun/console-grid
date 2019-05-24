@@ -108,4 +108,10 @@ data.option.sortField = "number";
 data.option.sortAsc = true;
 consoleGrid.render(data);
 
-//console.log(data);
+data.option.silent = true;
+var lines = consoleGrid.render(data);
+console.log(lines);
+console.log(lines.join("\n"));
+
+console.log("\nremove color:");
+console.log(consoleGrid.removeColor(lines.join("\n")));

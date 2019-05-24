@@ -109,6 +109,7 @@ option = {
         bottom_right: '┘'
     },
 
+    silent: false,
     hideHeaders: false,
 
     padding: 1,

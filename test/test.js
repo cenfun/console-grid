@@ -32,11 +32,17 @@ var data = {
         name: "Multiple Line Header Name",
         align: "right",
         maxWidth: 12
+    }, {
+        id: "chinese",
+        name: "中英文混合",
+        align: "left",
+        maxWidth: 12
     }],
     rows: [{
         name: "Row 1",
         value: "1",
-        number: 1
+        number: 1,
+        chinese: 'Chinese中文',
     }, {
         name: "Row 2",
         value: "2",

@@ -166,4 +166,10 @@ console.log(CGS.bg.green("bg green"));
 ```
 npm run test
 ```
-![screenshot](test/console-grid-screenshot.png)
+![screenshot](test/test.jpg)
+
+# CHANGELOG
+
+### v1.0.14
+* support fullWidth Unicode
+---

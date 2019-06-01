@@ -33,39 +33,45 @@ var data = {
         align: "right",
         maxWidth: 12
     }, {
-        id: "chinese",
-        name: "中英文混合",
+        id: "unicode",
+        name: "Unicode",
         align: "left",
-        maxWidth: 12
+        maxWidth: 15
     }],
     rows: [{
         name: "Row 1",
         value: "1",
         number: 1,
-        chinese: 'Chinese中文',
+        unicode: 'Chinese,中文'
     }, {
         name: "Row 2",
         value: "2",
-        number: 2
+        number: 2,
+        unicode: '12【标，点。】'
     }, {
         name: "Row Name",
         value: "3",
-        number: 3
+        number: 3,
+        unicode: '☆√✔×✘❤♬'
     }, {
         name: "Row Long Name " + CGS.red("Red") + " Long Name " + CGS.red("Long") + " " + CGS.green("G") + " Long Name " + CGS.red("Red"),
         value: "4",
-        number: 4
+        number: 4,
+        unicode: '①⑵⒊Ⅳ❺ʊəts'
     }, {
         name: "Row 5 " + CGS.red("red"),
-        value: "5"
+        value: "5",
+        unicode: 'あいアイサてつろ'
     }, {
         name: "Row 6 " + CGS.bg.green("bg green"),
         value: "6",
-        number: 6
+        number: 6,
+        unicode: '㈀ㅏ㉡ㅎㅉㅃㅈㅂ'
     }, {
         name: "Row 7 " + CGS.br.blue("bright blue"),
         value: "7",
-        number: 7
+        number: 7,
+        unicode: 'АБВДшщыф'
     }, {
         name: "Row 8 " + CGS.br.bg.blue("bright bg blue"),
         value: "8",
@@ -73,7 +79,8 @@ var data = {
         subs: [{
             name: "Sub Row 1",
             value: "s1",
-            number: 11
+            number: 11,
+            unicode: '汉字繁體'
         }, {
             name: "Sub Row 2",
             value: "s2s2s2 s",

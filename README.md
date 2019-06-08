@@ -114,7 +114,7 @@ option = {
 
     padding: 1,
     defaultMinWidth: 1,
-    defaultMaxWidth: 30,
+    defaultMaxWidth: 50,
 
     sortField: "",
     sortAsc: false,
@@ -169,6 +169,11 @@ npm run test
 ![screenshot](test/test.jpg)
 
 # CHANGELOG
+
+### v1.0.15
+* fixed invalid header name with column id
+* added row.innerBorder
+---
 
 ### v1.0.14
 * support fullWidth Unicode

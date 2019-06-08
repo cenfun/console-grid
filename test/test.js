@@ -106,6 +106,13 @@ data.rows[7].subs[0].subs = [{
 }];
 consoleGrid.render(data);
 
+console.log("\nrow innerBorder:");
+data.rows.splice(2, 0, {
+    innerBorder: true
+});
+consoleGrid.render(data);
+//data.rows.splice(2, 1);
+
 console.log("\nsort by name:");
 data.option.sortField = "name";
 consoleGrid.render(data);

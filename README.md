@@ -173,6 +173,7 @@ npm run test
 ### v1.0.16
 * fixed empty name issue
 * fixed output log mixing
+* fixed option override issue
 
 ### v1.0.15
 * fixed invalid header name with column id

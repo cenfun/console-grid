@@ -170,6 +170,10 @@ npm run test
 
 # CHANGELOG
 
+### v1.0.16
+* fixed empty name issue
+* fixed output log mixing
+
 ### v1.0.15
 * fixed invalid header name with column id
 * added row.innerBorder

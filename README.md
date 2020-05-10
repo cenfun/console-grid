@@ -78,7 +78,7 @@ var data = {
         value: "1"
     }, {
         name: "Row 2",
-        value: "2"
+        value: "2",
         subs: [{
             name: "Sub Row 1",
             value: "s1"

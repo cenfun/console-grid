@@ -1,20 +1,22 @@
 {
   "name": "console-grid",
-  "version": "1.0.16",
+  "version": "1.0.17",
   "description": "console log a grid",
   "main": "lib/index.js",
   "scripts": {
     "test": "node test/test.js"
   },
+  "files": [
+    "lib"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/cenfun/console-grid.git"
   },
-  "keywords": [],
-  "author": "",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/cenfun/console-grid/issues"
+  "dependencies": {
+    "eight-colors": "^1.0.0"
   },
-  "homepage": "https://github.com/cenfun/console-grid#readme"
+  "devDependencies": {
+    "eslint": "^7.20.0"
+  }
 }

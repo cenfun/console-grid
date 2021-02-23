@@ -8,7 +8,6 @@
 * Zero Dependencies and Pure Vanilla Javascript
 * Simple & Easy to use, Extremely Lightweight
 
-
 ![npm](https://img.shields.io/npm/v/console-grid.svg)
 ![npm](https://img.shields.io/npm/dt/console-grid.svg)
 ![David](https://img.shields.io/david/cenfun/console-grid.svg)
@@ -168,18 +167,24 @@ npm run test
 ```
 ![screenshot](test/test.jpg)
 
+
+# Unresolved
+* Special character(Unicode) support is not perfect
+
 # CHANGELOG
 
-### v1.0.16
-* fixed empty name issue
-* fixed output log mixing
-* fixed option override issue
 
-### v1.0.15
-* fixed invalid header name with column id
-* added row.innerBorder
----
+* v1.0.17
+    * updated eight-colors
 
-### v1.0.14
-* support fullWidth Unicode
----
+* v1.0.16
+    * fixed empty name issue
+    * fixed output log mixing
+    * fixed option override issue
+
+* v1.0.15
+    * fixed invalid header name with column id
+    * added row.innerBorder
+
+* v1.0.14
+    * support fullWidth Unicode

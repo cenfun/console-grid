@@ -1,14 +1,12 @@
-var ConsoleGrid = require("../lib/index.js");
-var consoleGrid = new ConsoleGrid();
-var CGS = ConsoleGrid.Style;
+const ConsoleGrid = require("../lib/index.js");
+const consoleGrid = new ConsoleGrid();
+const CGS = ConsoleGrid.Style;
 
-var data = {
-    option: {
-
-    },
+const data = {
+    option: {},
     columns: [{
         id: "name",
-        name: "Name " + CGS.bg.green("bg green"),
+        name: `Name ${CGS.bg.green("bg green")}`,
         type: "string",
         maxWidth: 38
     }, {
@@ -22,7 +20,7 @@ var data = {
     }, {
         id: "number",
         type: "number",
-        name: "Number Format " + CGS.red("red") + " LongWordLongWord",
+        name: `Number Format ${CGS.red("red")} LongWordLongWord`,
         maxWidth: 12,
         formatter: (v, row, column) => {
             return Number(v).toFixed(2);
@@ -42,45 +40,45 @@ var data = {
         name: "Row 1",
         value: "1",
         number: 1,
-        unicode: 'Chinese,中文'
+        unicode: "Chinese,中文"
     }, {
         name: "Row 2",
         value: "2",
         number: 2,
-        unicode: '12【标，点。】'
+        unicode: "12【标，点。】"
     }, {
         name: "Row Name",
         value: "3",
         number: 3,
-        unicode: '☆√✔×✘❤♬'
+        unicode: "☆√✔×✘❤♬"
     }, {
-        name: "Row Long Name " + CGS.red("Red") + " Long Name " + CGS.red("Long") + " " + CGS.green("G") + " Long Name " + CGS.red("Red"),
+        name: `Row Long Name ${CGS.red("Red")} Long Name ${CGS.red("Long")} ${CGS.green("G")} Long Name ${CGS.red("Red")}`,
         value: "4",
         number: 4,
-        unicode: '①⑵⒊Ⅳ❺ʊəts'
+        unicode: "①⑵⒊Ⅳ❺ʊəts"
     }, {
-        name: "Row 5 " + CGS.red("red"),
+        name: `Row 5 ${CGS.red("red")}`,
         value: "5",
-        unicode: 'あいアイサてつろ'
+        unicode: "あいアイサてつろ"
     }, {
-        name: "Row 6 " + CGS.bg.green("bg green"),
+        name: `Row 6 ${CGS.bg.green("bg green")}`,
         value: "6",
         number: 6,
-        unicode: '㈀ㅏ㉡ㅎㅉㅃㅈㅂ'
+        unicode: "㈀ㅏ㉡ㅎㅉㅃㅈㅂ"
     }, {
-        name: "Row 7 " + CGS.br.blue("bright blue"),
+        name: `Row 7 ${CGS.br.blue("bright blue")}`,
         value: "7",
         number: 7,
-        unicode: 'АБВДшщыф'
+        unicode: "АБВДшщыф"
     }, {
-        name: "Row 8 " + CGS.br.bg.blue("bright bg blue"),
+        name: `Row 8 ${CGS.br.bg.blue("bright bg blue")}`,
         value: "8",
         number: 8,
         subs: [{
             name: "Sub Row 1",
             value: "s1",
             number: 11,
-            unicode: '汉字繁體'
+            unicode: "汉字繁體"
         }, {
             name: "Sub Row 2",
             value: "s2s2s2 s",
@@ -129,9 +127,37 @@ data.option.sortAsc = true;
 consoleGrid.render(data);
 
 data.option.silent = true;
-var lines = consoleGrid.render(data);
+const lines = consoleGrid.render(data);
 console.log(lines);
 console.log(lines.join("\n"));
 
 console.log("\nremove color:");
 console.log(consoleGrid.removeColor(lines.join("\n")));
+
+
+//var ConsoleGrid = require("console-grid");
+const grid = new ConsoleGrid();
+const gridData = {
+    columns: [{
+        id: "name",
+        name: "Name",
+        type: "string"
+    }, {
+        id: "value",
+        name: "Value",
+        type: "string"
+    }],
+    rows: [{
+        name: "Row 1 (below has border)",
+        value: "1"
+    }, {
+        innerBorder: true
+    }, {
+        name: "Row 2",
+        value: "2"
+    }, {
+        name: "Row 3",
+        value: "3"
+    }]
+};
+grid.render(gridData);

@@ -151,13 +151,43 @@ row = {
 }
 ```
 
-# Color API
+# Inner Border Row
 ```js
 var ConsoleGrid = require("console-grid");
-var CGS = ConsoleGrid.Style;
-//'black', 'red', 'green', 'yellow', 'blue', 'magenta', 'cyan', 'white'
-console.log(CGS.red("Red"));
-console.log(CGS.bg.green("bg green"));
+const grid = new ConsoleGrid();
+const gridData = {
+    columns: [{
+        id: "name",
+        name: "Name",
+        type: "string"
+    }, {
+        id: "value",
+        name: "Value",
+        type: "string"
+    }],
+    rows: [{
+        name: "Row 1 (below has border)",
+        value: "1"
+    }, {
+        innerBorder: true
+    }, {
+        name: "Row 2",
+        value: "2"
+    }, {
+        name: "Row 3",
+        value: "3"
+    }]
+};
+grid.render(gridData);
+
+┌──────────────────────────┬───────┐
+│ Name                     │ Value │
+├──────────────────────────┼───────┤
+│ Row 1 (below has border) │ 1     │
+├──────────────────────────┼───────┤
+│ Row 2                    │ 2     │
+│ Row 3                    │ 3     │
+└──────────────────────────┴───────┘
 ```
 
 # Example test

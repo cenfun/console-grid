@@ -310,7 +310,8 @@ CG({
         ['Green', EC.green('green text'), EC.bg.green('green text')]
     ]
 });  
-``` 
+```  
+![](/scripts/screenshots.jpg) 
 
 ## Data Format Definition: [CGDF](https://github.com/cenfun/cgdf)
 ```js

@@ -336,7 +336,8 @@ const start = () => {
         '## With colorful cells (using [eight-colors](https://github.com/cenfun/eight-colors)):',
         '```sh',
         str,
-        '```'
+        '```',
+        '![](/scripts/screenshots.jpg)'
     ];
     list.push(ls.join(newLine));
 

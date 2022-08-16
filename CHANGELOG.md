@@ -1,6 +1,8 @@
-* v2.0.0
-    - changed interface to functional from class (breaking change)
+* v2.0.0 (breaking changed)
+    - functional interface from class 
     - supported simple data formatter
+    - supported column align center
+    - renamed some options
 ---
 
 * v1.0.17

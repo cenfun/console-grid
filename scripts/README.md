@@ -18,7 +18,7 @@ npm i console-grid
 
 ## Usage
 
-
+{placeholder_list}
 
 ## Data Format Definition: [CGDF](https://github.com/cenfun/cgdf)
 ```js

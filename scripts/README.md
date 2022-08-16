@@ -5,13 +5,11 @@
 
 ## Features
 * Console log a grid 
-* Support Tree style rows
+* Support tree style rows
 * Custom cell formatter
 * Column align/sorting
 * Multiple lines header
 * Support colorful cells
-* Zero Dependencies and Pure Vanilla Javascript
-* Simple & Easy to use, Extremely Lightweight
 
 ## Install
 ```

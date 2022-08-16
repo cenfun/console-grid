@@ -274,7 +274,7 @@ const start = () => {
                 ['汉字繁體', 'АБВДшщыф']
             ]
         },
-        comments: '- Unresolved: Unexpected width of some special characters, especially on different output terminals'
+        comments: '- Unresolved: some special characters has unexpected width, especially on different output terminals (depends on fonts)'
     }].map((item) => {
 
         const codes = ['const CG = require("console-grid");'];
@@ -318,14 +318,24 @@ const start = () => {
         'const EC = require("eight-colors");',
         'const CG = require("console-grid");'
     ];
-    codes.push(`CG({
+    codes.push(`const data = {
         columns: ['Name', EC.cyan('Color Text'), EC.bg.cyan('Color Background')],
         rows: [
             ['Red', EC.red('red text'), EC.bg.red('red bg')],
             ['Green', EC.green('green text'), EC.bg.green('green text')]
         ]
-    });`);
+    };`);
+    codes.push('CG(data);');
     codes.push('');
+
+    codes.push(`
+        // silent output and remove color
+        data.options = {
+            silent: true
+        };
+        const lines = CG(data);
+        console.log(EC.remove(lines.join('\\n')));
+    `);
 
     const code = codes.join(os.EOL);
 
@@ -337,7 +347,7 @@ const start = () => {
         '```sh',
         str,
         '```',
-        '![](/scripts/screenshots.jpg)'
+        '![](/scripts/screenshots.png)'
     ];
     list.push(ls.join(newLine));
 

@@ -5,13 +5,11 @@
 
 ## Features
 * Console log a grid 
-* Support Tree style rows
+* Support tree style rows
 * Custom cell formatter
 * Column align/sorting
 * Multiple lines header
 * Support colorful cells
-* Zero Dependencies and Pure Vanilla Javascript
-* Simple & Easy to use, Extremely Lightweight
 
 ## Install
 ```
@@ -298,20 +296,29 @@ CG({
 │ 汉字繁體         │ АБВДшщыф │
 └──────────────────┴──────────────────┘  
 ```  
-- Unresolved: Unexpected width of some special characters, especially on different output terminals  
+- Unresolved: some special characters has unexpected width, especially on different output terminals (depends on fonts)  
 ## With colorful cells (using [eight-colors](https://github.com/cenfun/eight-colors)):  
 ```sh  
 const EC = require("eight-colors");
 const CG = require("console-grid");
-CG({
+const data = {
     columns: ['Name', EC.cyan('Color Text'), EC.bg.cyan('Color Background')],
     rows: [
         ['Red', EC.red('red text'), EC.bg.red('red bg')],
         ['Green', EC.green('green text'), EC.bg.green('green text')]
     ]
-});  
+};
+CG(data);
+
+
+// silent output and remove color
+data.options = {
+    silent: true
+};
+const lines = CG(data);
+console.log(EC.remove(lines.join('\n')));  
 ```  
-![](/scripts/screenshots.jpg) 
+![](/scripts/screenshots.png) 
 
 ## Data Format Definition: [CGDF](https://github.com/cenfun/cgdf)
 ```js

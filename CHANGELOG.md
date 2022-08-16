@@ -1,5 +1,5 @@
-* v2.0.0 (breaking changed)
-    - functional interface from class 
+* v2.0.0 (breaking change)
+    - functional interface 
     - supported simple data formatter
     - supported column align center
     - renamed some options

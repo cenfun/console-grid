@@ -3,8 +3,9 @@
     - supported simple data formatter
     - supported column align center
     - renamed some options
-migration from 1.x:
 ```js
+// migration from 1.x:
+
 // 1.x option hideHeaders (default false)
 const data = {
     option: {

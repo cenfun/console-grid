@@ -18,6 +18,7 @@
         "eight-colors": "^1.0.1",
         "eslint": "^8.22.0",
         "eslint-config-plus": "^1.0.3",
-        "eslint-plugin-html": "^7.1.0"
+        "eslint-plugin-html": "^7.1.0",
+        "js-beautify": "^1.14.5"
     }
 }

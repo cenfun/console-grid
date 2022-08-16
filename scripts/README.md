@@ -1,24 +1,26 @@
 # console-grid
 
-* Console log a grid with tree style rows
-* Color cells
-* Customize cell formatter
-* Column sorting
-* Multiple lines header
-* Zero Dependencies and Pure Vanilla Javascript
-* Simple & Easy to use, Extremely Lightweight
-
 ![](https://img.shields.io/npm/v/console-grid.svg)
 ![](https://img.shields.io/npm/dt/console-grid.svg)
 
-# Install
+## Features
+* Console log a grid 
+* Support Tree style rows
+* Custom cell formatter
+* Column align/sorting
+* Multiple lines header
+* Support colorful cells
+* Zero Dependencies and Pure Vanilla Javascript
+* Simple & Easy to use, Extremely Lightweight
+
+## Install
 ```
 npm i console-grid
 ```
 
 ## Usage
 
-{placeholder_list}
+{placeholder_list} 
 
 ## Data Format Definition: [CGDF](https://github.com/cenfun/cgdf)
 ```js
@@ -32,38 +34,38 @@ npm i console-grid
 ## Default Options
 ```js
 {
-    border: {
-        h: '─',
-        v: '│',
-        top_left: '┌',
-        top_mid: '┬',
-        top_right: '┐',
-        mid_left: '├',
-        mid_mid: '┼',
-        mid_right: '┤',
-        bottom_left: '└',
-        bottom_mid: '┴',
-        bottom_right: '┘'
-    },
-
     silent: false,
-    hideHeaders: false,
+    headerVisible: false,
 
     padding: 1,
     defaultMinWidth: 1,
     defaultMaxWidth: 50,
 
-    sortField: "",
+    sortField: '',
     sortAsc: false,
 
-    treeId: "name",
-    treeIcon: "├ ",
-    treeLink: "│ ",
-    treeLast: "└ ",
-    treeIndent: "  ",
-    defaultTreeFormatter: this.defaultTreeFormatter,
-    defaultFormatter: this.defaultFormatter,
-    nullPlaceholder: "-"
+    treeId: 'name',
+    treeIcon: '├ ',
+    treeLink: '│ ',
+    treeLast: '└ ',
+    treeIndent: '  ',
+
+    nullPlaceholder: '-',
+
+    //border definition:
+    //H: horizontal, V: vertical
+    //T: top, B: bottom, L: left, R: right, C: center
+    borderH: '─',
+    borderV: '│',
+    borderTL: '┌',
+    borderTC: '┬',
+    borderTR: '┐',
+    borderCL: '├',
+    borderCC: '┼',
+    borderCR: '┤',
+    borderBL: '└',
+    borderBC: '┴',
+    borderBR: '┘'
 }
 ```
 
@@ -73,10 +75,10 @@ npm i console-grid
     id: String,
     name: String,
     type: String, //string, number
-    align : String, //left, right
+    align : String, //left(default), center, right
     minWidth: Number,
     maxWidth: Number,
-    formatter: Function //cell formatter
+    formatter: Function //custom cell formatter
 }
 ```
 
@@ -84,13 +86,10 @@ npm i console-grid
 ```js
 {
     //column id key: cell value
+    innerBorder: Boolean,
     subs: Array //sub rows
 }
 ```
-
-
-## Unresolved
-* Special character(Unicode) support is not perfect
 
 ## CHANGELOG
 [CHANGELOG.md](CHANGELOG.md)

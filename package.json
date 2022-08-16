@@ -1,10 +1,10 @@
 {
     "name": "console-grid",
-    "version": "1.0.17",
-    "description": "console log a grid",
+    "version": "2.0.0",
+    "description": "Console log a grid",
     "main": "lib/index.js",
     "scripts": {
-        "test": "node test/test.js"
+        "build": "node ./scripts/build.js"
     },
     "files": [
         "lib"
@@ -13,10 +13,11 @@
         "type": "git",
         "url": "git+https://github.com/cenfun/console-grid.git"
     },
-    "dependencies": {
-        "eight-colors": "^1.0.0"
-    },
+    "dependencies": {},
     "devDependencies": {
-        "eslint": "^7.32.0"
+        "eight-colors": "^1.0.1",
+        "eslint": "^8.22.0",
+        "eslint-config-plus": "^1.0.3",
+        "eslint-plugin-html": "^7.1.0"
     }
 }

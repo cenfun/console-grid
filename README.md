@@ -341,6 +341,7 @@ console.log(EC.remove(lines.join('\n')));
 
     sortField: '',
     sortAsc: false,
+    sortIcon: '*',
 
     treeId: 'name',
     treeIcon: '├ ',

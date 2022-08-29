@@ -41,6 +41,7 @@ npm i console-grid
 
     sortField: '',
     sortAsc: false,
+    sortIcon: '*',
 
     treeId: 'name',
     treeIcon: '├ ',

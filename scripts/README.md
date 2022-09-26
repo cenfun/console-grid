@@ -64,7 +64,10 @@ npm i console-grid
     borderCR: '┤',
     borderBL: '└',
     borderBC: '┴',
-    borderBR: '┘'
+    borderBR: '┘',
+
+    getCharLength: defaultGetCharLength
+    
 }
 ```
 

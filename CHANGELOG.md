@@ -1,3 +1,6 @@
+* v2.0.1
+    - added option getCharLength
+
 * v2.0.0 (breaking change)
     - functional interface 
     - supported simple data formatter

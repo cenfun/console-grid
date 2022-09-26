@@ -274,33 +274,10 @@ CG({
 │ Item 2 │     30 │
 └────────┴────────┘  
 ```  
-## With special character:  
+## With color (using [eight-colors](https://github.com/cenfun/eight-colors)):  
 ```sh  
 const CG = require("console-grid");
-CG({
-    "columns": ["Special", "Character"],
-    "rows": [
-        ["Chinese,中文", "12【标，点。】"],
-        ["あいアイサてつろ", "☆√✔×✘❤♬"],
-        ["㈀ㅏ㉡ㅎㅉㅃㅈㅂ", "①⑵⒊Ⅳ❺ʊəts"],
-        ["汉字繁體", "АБВДшщыф"]
-    ]
-});  
-
-┌──────────────────┬──────────────────┐
-│ Special          │ Character        │
-├──────────────────┼──────────────────┤
-│ Chinese,中文     │ 12【标，点。】   │
-│ あいアイサてつろ │ ☆√✔×✘❤♬   │
-│ ㈀ㅏ㉡ㅎㅉㅃㅈㅂ │ ①⑵⒊Ⅳ❺ʊəts │
-│ 汉字繁體         │ АБВДшщыф │
-└──────────────────┴──────────────────┘  
-```  
-- Unresolved: some special characters has unexpected width, especially on different output terminals (depends on fonts)  
-## With colorful cells (using [eight-colors](https://github.com/cenfun/eight-colors)):  
-```sh  
 const EC = require("eight-colors");
-const CG = require("console-grid");
 const data = {
     columns: ['Name', EC.cyan('Color Text'), EC.bg.cyan('Color Background')],
     rows: [
@@ -318,7 +295,63 @@ data.options = {
 const lines = CG(data);
 console.log(EC.remove(lines.join('\n')));  
 ```  
-![](/scripts/screenshots.png) 
+![](/scripts/screenshots.png)  
+## With special character:  
+- Unresolved: some special characters has unexpected width, especially on different output terminals (depends on fonts)  
+```sh  
+const CG = require("console-grid");
+CG({
+    "columns": ["Special", "Character"],
+    "rows": [
+        ["Chinese,中文", "12【标，点。】"],
+        ["あいアイサてつろ", "☆√✔×✘❤♬"],
+        ["㈀ㅏ㉡ㅎㅉㅃㅈㅂ", "①⑵⒊Ⅳ❺ʊəts"],
+        ["汉字繁體", "АБВДшщыф"],
+        ["Emoji👋👩⌚✅", "↑↓▲▼○●♡♥"]
+    ]
+});  
+
+┌───────────────────┬──────────────────┐
+│ Special           │ Character        │
+├───────────────────┼──────────────────┤
+│ Chinese,中文      │ 12【标，点。】   │
+│ あいアイサてつろ  │ ☆√✔×✘❤♬   │
+│ ㈀ㅏ㉡ㅎㅉㅃㅈㅂ  │ ①⑵⒊Ⅳ❺ʊəts │
+│ 汉字繁體          │ АБВДшщыф │
+│ Emoji👋👩⌚✅ │ ↑↓▲▼○●♡♥ │
+└───────────────────┴──────────────────┘  
+```  
+## With custom getCharLength (using [eastasianwidth](https://github.com/komagata/eastasianwidth)):  
+- Unresolved: still not perfect in special character width  
+```sh  
+const CG = require("console-grid");
+const eaw = require("eastasianwidth");
+CG({
+    options: {
+        getCharLength: (char) => {
+            return eaw.length(char);
+        }
+    },
+    columns: ["Special", "Character"],
+    rows: [
+        ["Chinese,中文", "12【标，点。】"],
+        ["あいアイサてつろ", "☆√✔×✘❤♬"],
+        ["㈀ㅏ㉡ㅎㅉㅃㅈㅂ", "①⑵⒊Ⅳ❺ʊəts"],
+        ["汉字繁體", "АБВДшщыф"],
+        ["Emoji👋👩⌚✅", "↑↓▲▼○●♡♥"]
+    ]
+});  
+
+┌──────────────────┬──────────────────┐
+│ Special          │ Character        │
+├──────────────────┼──────────────────┤
+│ Chinese,中文     │ 12【标，点。】   │
+│ あいアイサてつろ │ ☆√✔×✘❤♬      │
+│ ㈀ㅏ㉡ㅎㅉㅃㅈㅂ │ ①⑵⒊Ⅳ❺ʊəts   │
+│ 汉字繁體         │ АБВДшщыф │
+│ Emoji👋👩⌚✅        │ ↑↓▲▼○●♡♥ │
+└──────────────────┴──────────────────┘  
+``` 
 
 ## Data Format Definition: [CGDF](https://github.com/cenfun/cgdf)
 ```js
@@ -364,7 +397,10 @@ console.log(EC.remove(lines.join('\n')));
     borderCR: '┤',
     borderBL: '└',
     borderBC: '┴',
-    borderBR: '┘'
+    borderBR: '┘',
+
+    getCharLength: defaultGetCharLength
+    
 }
 ```
 

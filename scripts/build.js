@@ -3,6 +3,7 @@ const path = require('path');
 const os = require('os');
 const EC = require('eight-colors');
 const beautify = require('js-beautify');
+const eaw = require('eastasianwidth');
 
 const CG = require('../lib');
 
@@ -72,9 +73,117 @@ const replaceFile = function(templatePath, savePath, callback) {
     return editedContent;
 };
 
-const start = () => {
+const newLine = `  ${os.EOL}`;
 
-    const newLine = `  ${os.EOL}`;
+const colorCase = (list) => {
+    const data = {
+        columns: ['Name', EC.cyan('Color Text'), EC.bg.cyan('Color Background')],
+        rows: [
+            ['Red', EC.red('red text'), EC.bg.red('red bg')],
+            ['Green', EC.green('green text'), EC.bg.green('green text')]
+        ]
+    };
+    const codes = [
+        'const CG = require("console-grid");',
+        'const EC = require("eight-colors");'
+    ];
+    codes.push(`const data = {
+        columns: ['Name', EC.cyan('Color Text'), EC.bg.cyan('Color Background')],
+        rows: [
+            ['Red', EC.red('red text'), EC.bg.red('red bg')],
+            ['Green', EC.green('green text'), EC.bg.green('green text')]
+        ]
+    };`);
+    codes.push('CG(data);');
+    codes.push('');
+
+    codes.push(`
+        // silent output and remove color
+        data.options = {
+            silent: true
+        };
+        const lines = CG(data);
+        console.log(EC.remove(lines.join('\\n')));
+    `);
+
+    const code = codes.join(os.EOL);
+
+    CG(data).join(os.EOL);
+
+    const str = beautify.js(code, {});
+    const ls = [
+        '## With color (using [eight-colors](https://github.com/cenfun/eight-colors)):',
+        '```sh',
+        str,
+        '```',
+        '![](/scripts/screenshots.png)'
+    ];
+    list.push(ls.join(newLine));
+};
+
+const specialCase = (list, specialData) => {
+
+    const codes = ['const CG = require("console-grid");'];
+    codes.push(`CG(${JSON.stringify(specialData)});`);
+    codes.push('');
+
+    const code = codes.join(os.EOL);
+
+    const cg = CG(specialData).join(os.EOL);
+
+    const str = beautify.js(code, {}) + newLine + os.EOL + cg;
+
+    const ls = [
+        '## With special character:',
+        '- Unresolved: some special characters has unexpected width, especially on different output terminals (depends on fonts)',
+        '```sh',
+        str,
+        '```'
+    ];
+    list.push(ls.join(newLine));
+};
+
+const customGetCharLength = (list, specialData) => {
+
+    const codes = [
+        'const CG = require("console-grid");',
+        'const eaw = require("eastasianwidth");'
+    ];
+
+    codes.push(`CG({
+        options: {
+            getCharLength: (char) => {
+                return eaw.length(char);
+            }
+        },
+        columns: ${JSON.stringify(specialData.columns)},
+        rows: ${JSON.stringify(specialData.rows)}
+    });`);
+    codes.push('');
+
+    const code = codes.join(os.EOL);
+
+    specialData.options = {
+        getCharLength: (char) => {
+            return eaw.length(char);
+        }
+    };
+
+    const cg = CG(specialData).join(os.EOL);
+
+    const str = beautify.js(code, {}) + newLine + os.EOL + cg;
+
+    const ls = [
+        '## With custom getCharLength (using [eastasianwidth](https://github.com/komagata/eastasianwidth)):',
+        '- Unresolved: still not perfect in special character width',
+        '```sh',
+        str,
+        '```'
+    ];
+    list.push(ls.join(newLine));
+};
+
+const start = () => {
 
     const list = [{
         data: {
@@ -263,18 +372,6 @@ const start = () => {
                 value: 50
             }]
         }
-    }, {
-        title: 'With special character:',
-        data: {
-            columns: ['Special', 'Character'],
-            rows: [
-                ['Chinese,中文', '12【标，点。】'],
-                ['あいアイサてつろ', '☆√✔×✘❤♬'],
-                ['㈀ㅏ㉡ㅎㅉㅃㅈㅂ', '①⑵⒊Ⅳ❺ʊəts'],
-                ['汉字繁體', 'АБВДшщыф']
-            ]
-        },
-        comments: '- Unresolved: some special characters has unexpected width, especially on different output terminals (depends on fonts)'
     }].map((item) => {
 
         const codes = ['const CG = require("console-grid");'];
@@ -299,58 +396,29 @@ const start = () => {
             ls.unshift(`## ${item.title}`);
         }
 
-        if (item.comments) {
-            ls.push(item.comments);
-        }
-
         return ls.join(newLine);
     });
 
-    //colorful cells
-    const data = {
-        columns: ['Name', EC.cyan('Color Text'), EC.bg.cyan('Color Background')],
+    //=============================================================================
+
+    colorCase(list);
+
+    const specialData = {
+        columns: ['Special', 'Character'],
         rows: [
-            ['Red', EC.red('red text'), EC.bg.red('red bg')],
-            ['Green', EC.green('green text'), EC.bg.green('green text')]
+            ['Chinese,中文', '12【标，点。】'],
+            ['あいアイサてつろ', '☆√✔×✘❤♬'],
+            ['㈀ㅏ㉡ㅎㅉㅃㅈㅂ', '①⑵⒊Ⅳ❺ʊəts'],
+            ['汉字繁體', 'АБВДшщыф'],
+            ['Emoji👋👩⌚✅', '↑↓▲▼○●♡♥']
         ]
     };
-    const codes = [
-        'const EC = require("eight-colors");',
-        'const CG = require("console-grid");'
-    ];
-    codes.push(`const data = {
-        columns: ['Name', EC.cyan('Color Text'), EC.bg.cyan('Color Background')],
-        rows: [
-            ['Red', EC.red('red text'), EC.bg.red('red bg')],
-            ['Green', EC.green('green text'), EC.bg.green('green text')]
-        ]
-    };`);
-    codes.push('CG(data);');
-    codes.push('');
 
-    codes.push(`
-        // silent output and remove color
-        data.options = {
-            silent: true
-        };
-        const lines = CG(data);
-        console.log(EC.remove(lines.join('\\n')));
-    `);
+    specialCase(list, specialData);
+    customGetCharLength(list, specialData);
 
-    const code = codes.join(os.EOL);
-
-    CG(data).join(os.EOL);
-
-    const str = beautify.js(code, {});
-    const ls = [
-        '## With colorful cells (using [eight-colors](https://github.com/cenfun/eight-colors)):',
-        '```sh',
-        str,
-        '```',
-        '![](/scripts/screenshots.png)'
-    ];
-    list.push(ls.join(newLine));
-
+    //=============================================================================
+    // update readme
 
     const templatePath = path.resolve(__dirname, 'README.md');
     const savePath = path.resolve(__dirname, '../README.md');

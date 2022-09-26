@@ -1,6 +1,6 @@
 {
     "name": "console-grid",
-    "version": "2.0.0",
+    "version": "2.0.1",
     "description": "Console log a grid",
     "main": "lib/index.js",
     "scripts": {
@@ -13,12 +13,13 @@
         "type": "git",
         "url": "git+https://github.com/cenfun/console-grid.git"
     },
-    "dependencies": {},
     "devDependencies": {
-        "eight-colors": "^1.0.1",
-        "eslint": "^8.22.0",
+        "eastasianwidth": "^0.2.0",
+        "eight-colors": "^1.0.2",
+        "eslint": "^8.24.0",
         "eslint-config-plus": "^1.0.3",
         "eslint-plugin-html": "^7.1.0",
-        "js-beautify": "^1.14.5"
-    }
+        "js-beautify": "^1.14.6"
+    },
+    "dependencies": {}
 }

@@ -83,51 +83,98 @@ const colorCase = (list) => {
             ['Green', EC.green('green text'), EC.bg.green('green text')]
         ]
     };
-    const codes = [
-        'const CG = require("console-grid");',
-        'const EC = require("eight-colors");'
-    ];
-    codes.push(`const data = {
-        columns: ['Name', EC.cyan('Color Text'), EC.bg.cyan('Color Background')],
-        rows: [
-            ['Red', EC.red('red text'), EC.bg.red('red bg')],
-            ['Green', EC.green('green text'), EC.bg.green('green text')]
-        ]
-    };`);
-    codes.push('CG(data);');
-    codes.push('');
 
-    codes.push(`
+    CG(data);
+
+    const code = `
+        const CG = require("console-grid");
+        const EC = require("eight-colors");
+        const data = {
+            columns: ['Name', EC.cyan('Color Text'), EC.bg.cyan('Color Background')],
+            rows: [
+                ['Red', EC.red('red text'), EC.bg.red('red bg')],
+                ['Green', EC.green('green text'), EC.bg.green('green text')]
+            ]
+        };
+        CG(data);
+    `;
+    const str = beautify.js(code, {});
+
+
+    // silent output and remove color
+    data.options = {
+        silent: true
+    };
+    const lines = CG(data);
+    const withoutColor = EC.remove(lines.join(os.EOL));
+    console.log(withoutColor);
+
+    const code2 = `
         // silent output and remove color
         data.options = {
             silent: true
         };
         const lines = CG(data);
-        console.log(EC.remove(lines.join('\\n')));
-    `);
+        const withoutColor = EC.remove(lines.join(os.EOL));
+        console.log(withoutColor);
+    `;
+    const str2 = beautify.js(code2, {}) + newLine + os.EOL + withoutColor;
 
-    const code = codes.join(os.EOL);
-
-    CG(data).join(os.EOL);
-
-    const str = beautify.js(code, {});
     const ls = [
         '## With color (using [eight-colors](https://github.com/cenfun/eight-colors)):',
         '```sh',
         str,
         '```',
-        '![](/scripts/screenshots.png)'
+        '![](/scripts/screenshots.png)',
+        '```sh',
+        str2,
+        '```'
+    ];
+    list.push(ls.join(newLine));
+};
+
+const csvCase = (list) => {
+    const Papa = require('papaparse');
+    const csvString = `Column 1,Column 2,Column 3,Column 4
+1-1,1-2,1-3,1-4
+2-1,2-2,2-3,2-4
+3-1,3-2,3-3,3-4
+4,5,6,7`;
+    const json = Papa.parse(csvString);
+    const data = {
+        columns: json.data.shift(),
+        rows: json.data
+    };
+
+    const cg = CG(data).join(os.EOL);
+
+    const code = `
+        const CG = require("console-grid");
+        const Papa = require("papaparse");
+        const csvString = \`${csvString}\`;
+        const json = Papa.parse(csvString);
+        const data = {
+            columns: json.data.shift(),
+            rows: json.data
+        };
+        CG(data);
+    `;
+    const str = beautify.js(code, {}) + newLine + os.EOL + cg;
+    const ls = [
+        '## With CSV (using [papaparse](https://github.com/mholt/PapaParse)):',
+        '```sh',
+        str,
+        '```'
     ];
     list.push(ls.join(newLine));
 };
 
 const specialCase = (list, specialData) => {
 
-    const codes = ['const CG = require("console-grid");'];
-    codes.push(`CG(${JSON.stringify(specialData)});`);
-    codes.push('');
-
-    const code = codes.join(os.EOL);
+    const code = `
+        const CG = require("console-grid");
+        CG(${JSON.stringify(specialData)});
+    `;
 
     const cg = CG(specialData).join(os.EOL);
 
@@ -145,23 +192,19 @@ const specialCase = (list, specialData) => {
 
 const customGetCharLength = (list, specialData) => {
 
-    const codes = [
-        'const CG = require("console-grid");',
-        'const eaw = require("eastasianwidth");'
-    ];
-
-    codes.push(`CG({
-        options: {
-            getCharLength: (char) => {
-                return eaw.length(char);
-            }
-        },
-        columns: ${JSON.stringify(specialData.columns)},
-        rows: ${JSON.stringify(specialData.rows)}
-    });`);
-    codes.push('');
-
-    const code = codes.join(os.EOL);
+    const code = `
+        const CG = require("console-grid");
+        const eaw = require("eastasianwidth");
+        CG({
+            options: {
+                getCharLength: (char) => {
+                    return eaw.length(char);
+                }
+            },
+            columns: ${JSON.stringify(specialData.columns)},
+            rows: ${JSON.stringify(specialData.rows)}
+        });
+    `;
 
     specialData.options = {
         getCharLength: (char) => {
@@ -374,11 +417,10 @@ const start = () => {
         }
     }].map((item) => {
 
-        const codes = ['const CG = require("console-grid");'];
-        codes.push(`CG(${JSON.stringify(item.data)});`);
-        codes.push('');
-
-        const code = codes.join(os.EOL);
+        const code = `
+            const CG = require("console-grid");
+            CG(${JSON.stringify(item.data)});
+        `;
 
         const cg = CG(item.data).join(os.EOL);
 
@@ -402,6 +444,7 @@ const start = () => {
     //=============================================================================
 
     colorCase(list);
+    csvCase(list);
 
     const specialData = {
         columns: ['Special', 'Character'],

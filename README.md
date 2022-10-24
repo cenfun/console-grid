@@ -285,17 +285,50 @@ const data = {
         ['Green', EC.green('green text'), EC.bg.green('green text')]
     ]
 };
-CG(data);
-
-
+CG(data);  
+```  
+![](/scripts/screenshots.png)  
+```sh  
 // silent output and remove color
 data.options = {
     silent: true
 };
 const lines = CG(data);
-console.log(EC.remove(lines.join('\n')));  
+const withoutColor = EC.remove(lines.join(os.EOL));
+console.log(withoutColor);  
+
+┌───────┬────────────┬──────────────────┐
+│ Name  │ Color Text │ Color Background │
+├───────┼────────────┼──────────────────┤
+│ Red   │ red text   │ red bg           │
+│ Green │ green text │ green text       │
+└───────┴────────────┴──────────────────┘  
 ```  
-![](/scripts/screenshots.png)  
+## With CSV (using [papaparse](https://github.com/mholt/PapaParse)):  
+```sh  
+const CG = require("console-grid");
+const Papa = require("papaparse");
+const csvString = `Column 1,Column 2,Column 3,Column 4
+1-1,1-2,1-3,1-4
+2-1,2-2,2-3,2-4
+3-1,3-2,3-3,3-4
+4,5,6,7`;
+const json = Papa.parse(csvString);
+const data = {
+    columns: json.data.shift(),
+    rows: json.data
+};
+CG(data);  
+
+┌──────────┬──────────┬──────────┬──────────┐
+│ Column 1 │ Column 2 │ Column 3 │ Column 4 │
+├──────────┼──────────┼──────────┼──────────┤
+│ 1-1      │ 1-2      │ 1-3      │ 1-4      │
+│ 2-1      │ 2-2      │ 2-3      │ 2-4      │
+│ 3-1      │ 3-2      │ 3-3      │ 3-4      │
+│ 4        │ 5        │ 6        │ 7        │
+└──────────┴──────────┴──────────┴──────────┘  
+```  
 ## With special character:  
 - Unresolved: some special characters has unexpected width, especially on different output terminals (depends on fonts)  
 ```sh  

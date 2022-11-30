@@ -122,11 +122,11 @@ const colorCase = (list) => {
 
     const ls = [
         '## With color (using [eight-colors](https://github.com/cenfun/eight-colors)):',
-        '```sh',
+        '```js',
         str,
         '```',
         '![](/scripts/screenshots.png)',
-        '```sh',
+        '```js',
         str2,
         '```'
     ];
@@ -162,7 +162,7 @@ const csvCase = (list) => {
     const str = beautify.js(code, {}) + newLine + os.EOL + cg;
     const ls = [
         '## With CSV (using [papaparse](https://github.com/mholt/PapaParse)):',
-        '```sh',
+        '```js',
         str,
         '```'
     ];
@@ -183,7 +183,7 @@ const specialCase = (list, specialData) => {
     const ls = [
         '## With special character:',
         '- Unresolved: some special characters has unexpected width, especially on different output terminals (depends on fonts)',
-        '```sh',
+        '```js',
         str,
         '```'
     ];
@@ -219,7 +219,7 @@ const customGetCharLength = (list, specialData) => {
     const ls = [
         '## With custom getCharLength (using [eastasianwidth](https://github.com/komagata/eastasianwidth)):',
         '- Unresolved: still not perfect in special character width',
-        '```sh',
+        '```js',
         str,
         '```'
     ];
@@ -426,10 +426,10 @@ const start = () => {
 
         const str = beautify.js(code, {}) + newLine + os.EOL + cg;
 
-        //console.log(str);
+        // console.log(str);
 
         const ls = [
-            '```sh',
+            '```js',
             str,
             '```'
         ];
@@ -441,7 +441,7 @@ const start = () => {
         return ls.join(newLine);
     });
 
-    //=============================================================================
+    // =============================================================================
 
     colorCase(list);
     csvCase(list);
@@ -460,7 +460,7 @@ const start = () => {
     specialCase(list, specialData);
     customGetCharLength(list, specialData);
 
-    //=============================================================================
+    // =============================================================================
     // update readme
 
     const templatePath = path.resolve(__dirname, 'README.md');

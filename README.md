@@ -18,7 +18,7 @@ npm i console-grid
 
 ## Usage
 
-```js
+```js  
 const CG = require("console-grid");
 CG({
     "columns": ["", "Name", "Value"],
@@ -36,7 +36,7 @@ CG({
 └───┴───────┴─────────┘  
 ```  
 ## Without header:  
-```js
+```js  
 const CG = require("console-grid");
 CG({
     "options": {
@@ -55,7 +55,7 @@ CG({
 └───┴───────┴─────────┘  
 ```  
 ## With column minWidth and maxWidth (Multiple Line Header):  
-```js
+```js  
 const CG = require("console-grid");
 CG({
     "columns": ["", {
@@ -83,7 +83,7 @@ CG({
 └───┴─────────────────┴──────────────────────┴─────────────────┘  
 ```  
 ## With column align and padding:  
-```js
+```js  
 const CG = require("console-grid");
 CG({
     "options": {
@@ -132,7 +132,7 @@ CG({
 └───────────┴────────────┴────────────┴─────────┴────────────────┘  
 ```  
 ## With tree rows (nullPlaceholder/number align and formatter):  
-```js
+```js  
 const CG = require("console-grid");
 CG({
     "columns": [{
@@ -205,7 +205,7 @@ CG({
 └────────────────────────────────┴───────┴──────┴────────┘  
 ```  
 ## With inner border:  
-```js
+```js  
 const CG = require("console-grid");
 CG({
     "columns": [{
@@ -239,7 +239,7 @@ CG({
 └────────┴───────┘  
 ```  
 ## With column sorting:  
-```js
+```js  
 const CG = require("console-grid");
 CG({
     "options": {
@@ -275,7 +275,7 @@ CG({
 └────────┴────────┘  
 ```  
 ## With color (using [eight-colors](https://github.com/cenfun/eight-colors)):  
-```js
+```js  
 const CG = require("console-grid");
 const EC = require("eight-colors");
 const data = {
@@ -288,7 +288,7 @@ const data = {
 CG(data);  
 ```  
 ![](/scripts/screenshots.png)  
-```js
+```js  
 // silent output and remove color
 data.options = {
     silent: true
@@ -305,7 +305,7 @@ console.log(withoutColor);
 └───────┴────────────┴──────────────────┘  
 ```  
 ## With CSV (using [papaparse](https://github.com/mholt/PapaParse)):  
-```js
+```js  
 const CG = require("console-grid");
 const Papa = require("papaparse");
 const csvString = `Column 1,Column 2,Column 3,Column 4
@@ -331,7 +331,7 @@ CG(data);
 ```  
 ## With special character:  
 - Unresolved: some special characters has unexpected width, especially on different output terminals (depends on fonts)  
-```js
+```js  
 const CG = require("console-grid");
 CG({
     "columns": ["Special", "Character"],
@@ -356,7 +356,7 @@ CG({
 ```  
 ## With custom getCharLength (using [eastasianwidth](https://github.com/komagata/eastasianwidth)):  
 - Unresolved: still not perfect in special character width  
-```js
+```js  
 const CG = require("console-grid");
 const eaw = require("eastasianwidth");
 CG({

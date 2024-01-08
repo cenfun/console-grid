@@ -17,11 +17,11 @@
     "dependencies": {},
     "devDependencies": {
         "eastasianwidth": "^0.2.0",
-        "eight-colors": "^1.0.2",
-        "eslint": "^8.26.0",
-        "eslint-config-plus": "^1.0.5",
+        "eight-colors": "^1.1.0",
+        "eslint": "^8.56.0",
+        "eslint-config-plus": "^1.0.6",
         "eslint-plugin-html": "^7.1.0",
-        "js-beautify": "^1.14.7",
-        "papaparse": "^5.3.2"
+        "js-beautify": "^1.14.11",
+        "papaparse": "^5.4.1"
     }
 }

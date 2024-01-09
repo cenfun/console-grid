@@ -2,9 +2,20 @@
     "name": "console-grid",
     "version": "2.0.1",
     "description": "Console log a grid",
-    "main": "lib/index.js",
+    "main": "./lib/index.js",
+    "exports": {
+        ".": {
+            "types": "./lib/index.d.ts",
+            "import": "./lib/index.mjs",
+            "require": "./lib/index.js",
+            "default": "./lib/index.js"
+        },
+        "./package.json": "./package.json"
+    },
+    "types": "./lib/index.d.ts",
     "scripts": {
-        "build": "node ./scripts/build.js"
+        "link": "sf link ./ -f",
+        "build": "node ./scripts/build.mjs"
     },
     "files": [
         "lib"
@@ -16,8 +27,9 @@
     },
     "dependencies": {},
     "devDependencies": {
+        "@types/node": "^20.10.7",
         "eastasianwidth": "^0.2.0",
-        "eight-colors": "^1.1.0",
+        "eight-colors": "^1.2.0",
         "eslint": "^8.56.0",
         "eslint-config-plus": "^1.0.6",
         "eslint-plugin-html": "^7.1.0",

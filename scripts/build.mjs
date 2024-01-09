@@ -1,11 +1,20 @@
-const fs = require('fs');
-const path = require('path');
-const os = require('os');
-const EC = require('eight-colors');
-const beautify = require('js-beautify');
-const eaw = require('eastasianwidth');
+import fs from 'fs';
+import path from 'path';
+import os from 'os';
+import EC from 'eight-colors';
+import beautify from 'js-beautify';
+import eaw from 'eastasianwidth';
+import Papa from 'papaparse';
 
-const CG = require('../lib');
+import CG from 'console-grid';
+// import { ConsoleGrid } from 'console-grid';
+
+// console.log(CG);
+
+// new ConsoleGrid({
+//     columns: [],
+//     rows: []
+// }).render();
 
 const hasOwn = function(obj, key) {
     return Object.prototype.hasOwnProperty.call(obj, key);
@@ -100,7 +109,6 @@ const colorCase = (list) => {
     `;
     const str = beautify.js(code, {});
 
-
     // silent output and remove color
     data.options = {
         silent: true
@@ -134,7 +142,6 @@ const colorCase = (list) => {
 };
 
 const csvCase = (list) => {
-    const Papa = require('papaparse');
     const csvString = `Column 1,Column 2,Column 3,Column 4
 1-1,1-2,1-3,1-4
 2-1,2-2,2-3,2-4
@@ -463,8 +470,8 @@ const start = () => {
     // =============================================================================
     // update readme
 
-    const templatePath = path.resolve(__dirname, 'README.md');
-    const savePath = path.resolve(__dirname, '../README.md');
+    const templatePath = path.resolve('./scripts/README.md');
+    const savePath = path.resolve('./README.md');
 
     replaceFile(templatePath, savePath, (content) => {
         return replace(content, {

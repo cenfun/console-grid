@@ -1,3 +1,6 @@
+* v2.1.0
+    - added types
+
 * v2.0.1
     - added option getCharLength
 

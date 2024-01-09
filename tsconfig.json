@@ -1,0 +1,9 @@
+{
+    "compilerOptions": {
+        "noEmit": true,
+        "allowJs": true,
+        "checkJs": true,
+        "allowSyntheticDefaultImports": true,
+        "esModuleInterop": true
+    }
+}

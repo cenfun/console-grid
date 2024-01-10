@@ -1,13 +1,13 @@
 declare namespace CG {
-    type ColumnFormatter = (value: any, rowItem: RowItem, columnItem: ColumnItem) => any;
+    export type ColumnFormatter = (value: any, rowItem: RowItem, columnItem: ColumnItem) => any;
 
-    type RowItem = {
+    export type RowItem = {
         subs?: RowItem[];
         innerBorder?: boolean;
         [key: string]: any;
     } | any[];
 
-    type ColumnItem = {
+    export type ColumnItem = {
         id?: string;
         name?: string;
         align?: 'left' | 'right' | 'center' | string;
@@ -18,7 +18,7 @@ declare namespace CG {
         [key: string]: any;
     } | string;
 
-    interface GridOptions {
+    export interface GridOptions {
         silent?: boolean;
         headerVisible?: boolean;
 
@@ -59,14 +59,14 @@ declare namespace CG {
         defaultFormatter?: ColumnFormatter;
     }
 
-    interface GridData {
+    export interface GridData {
         options?: GridOptions;
         columns: ColumnItem[];
         rows: RowItem[];
         [key: string]: any;
     }
 
-    class ConsoleGrid {
+    export class ConsoleGrid {
         constructor(data: GridData);
         render(): string[];
     }

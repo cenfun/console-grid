@@ -6,15 +6,19 @@ import beautify from 'js-beautify';
 import eaw from 'eastasianwidth';
 import Papa from 'papaparse';
 
-import CG from 'console-grid';
-// import { ConsoleGrid } from 'console-grid';
+import CG, { ConsoleGrid } from 'console-grid';
 
 // console.log(CG);
 
-// new ConsoleGrid({
-//     columns: [],
-//     rows: []
-// }).render();
+new ConsoleGrid({
+    columns: ['name'],
+    rows: [
+        ['a'],
+        {
+
+        }
+    ]
+}).render();
 
 const hasOwn = function(obj, key) {
     return Object.prototype.hasOwnProperty.call(obj, key);

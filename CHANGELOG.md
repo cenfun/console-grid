@@ -1,3 +1,6 @@
+* v2.2.1
+    - fixed color for truncated string
+
 * v2.2.0
     - removed first level tree line
 

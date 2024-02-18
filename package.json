@@ -17,7 +17,7 @@
         "link": "sf link ./ -f",
         "build": "node ./scripts/build.mjs",
         "test": "node ./scripts/test.cjs",
-        "patch": "npm run build && sf publish patch -r"
+        "patch": "npm run test && npm run build && sf publish patch -r"
     },
     "files": [
         "lib"

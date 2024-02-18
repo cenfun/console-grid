@@ -1,3 +1,6 @@
+* v2.2.0
+    - removed first level tree line
+
 * v2.1.0
     - added types
 

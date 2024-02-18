@@ -365,15 +365,19 @@ const start = () => {
                         name: 'Sub Group 1 Sub Row 1',
                         value: '6',
                         number: 6
+                    }, {
+                        name: 'Sub Group 1 Sub Row 2',
+                        value: '7',
+                        number: 7
                     }]
                 }, {
                     name: 'Sub Row 1',
-                    value: '7',
-                    number: 7
-                }, {
-                    name: 'Sub Row 2',
                     value: '8',
                     number: 8
+                }, {
+                    name: 'Sub Row 2',
+                    value: '9',
+                    number: 9
                 }]
             }]
         }
@@ -397,7 +401,12 @@ const start = () => {
                 value: 30
             }, {
                 name: 'Item 2',
-                value: 50
+                value: 50,
+                subs: [{
+                    name: 'Sub 21'
+                }, {
+                    name: 'Sub 22'
+                }]
             }]
         }
     }, {

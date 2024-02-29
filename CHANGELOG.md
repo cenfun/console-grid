@@ -1,3 +1,6 @@
+* v2.2.2
+    - fixed the tree icon if name is empty
+
 * v2.2.1
     - fixed color for truncated string
 

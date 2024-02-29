@@ -405,6 +405,8 @@ const start = () => {
                 subs: [{
                     name: 'Sub 21'
                 }, {
+                    name: ''
+                }, {
                     name: 'Sub 22'
                 }]
             }]

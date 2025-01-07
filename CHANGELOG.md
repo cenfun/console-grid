@@ -1,3 +1,6 @@
+* v2.2.3
+    - fixed hex color issue
+
 * v2.2.2
     - fixed the tree icon if name is empty
 

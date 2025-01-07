@@ -1,5 +1,6 @@
-const EC = require('eight-colors');
-const CG = require('console-grid');
+import EC from 'eight-colors';
+import chalk from 'chalk';
+import CG from 'console-grid';
 
 console.log(CG);
 
@@ -34,6 +35,8 @@ console.log(cg.getCharByWidth(bgStr, 30));
 console.log(cg.getCharByWidth(bgStr, 20));
 console.log(cg.getCharByWidth(bgStr, 10));
 
+const hexColor = chalk.hex('#ff0000');
+
 CG({
     columns: [{
         id: 'name'
@@ -44,5 +47,7 @@ CG({
     }, {
         name: EC.bg.yellow(`long string ${EC.green('inner green string')} ${EC.red('long red string long red string')}`),
         maxWidth: 50
+    }, {
+        name: hexColor('Hex Colored Text')
     }]
 });

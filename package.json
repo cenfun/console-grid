@@ -1,7 +1,7 @@
 {
     "name": "console-grid",
     "version": "2.2.3",
-    "description": "Console log a grid",
+    "description": "A lightweight, zero-dependency utility for rendering formatted grids/tables in the Node.js console",
     "main": "./lib/index.js",
     "exports": {
         ".": {

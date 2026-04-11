@@ -1,3 +1,10 @@
+* v2.2.4
+    - optimized performance: cached ANSI color regex, use String.repeat(), Set lookup for border chars, pre-computed column keys
+    - fixed ANSI regex to support 256-color and RGB sequences
+    - fixed text truncation to use display width instead of string length
+    - fixed surrogate pairs handling in character width calculation
+    - improved documentation
+
 * v2.2.3
     - fixed hex color issue
 
